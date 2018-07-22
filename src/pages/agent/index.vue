@@ -1,6 +1,7 @@
 <template>
     <div class="agent_page">
-        <button type="button" name="button" v-pop>click</button>
+        <button type="button" name="button" v-pop="500">click</button>
+        <button type="button" name="button" v-pop="300">click</button>
     </div>
 </template>
 

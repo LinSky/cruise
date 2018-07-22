@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="tw_popover" :style="computeStyle()" v-if="visible">
+        <div class="tw_popover" @click.stop="cancelBubbleHandler" :style="computeStyle()" v-if="visible">
             tw_popover
         </div>
     </transition>
@@ -36,6 +36,12 @@ export default {
             style['top'] = vm.top + 'px'
             style['left'] = vm.left + 'px'
             return style
+        },
+        show () {
+            this.visible = true
+        },
+        cancelBubbleHandler (e) {
+            e.cancelBubble = true
         }
     }
 }

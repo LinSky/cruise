@@ -35,8 +35,7 @@ PopoverConstructor.prototype.close = function() {
 let Popover = (options = {}) => {
     let duration = options.duration || 3000
     let instance = getAnInstance();
-    instance.closed = false;
-    clearTimeout(instance.timer);
+    instance.close()
     instance.width = options.width
     instance.top = options.top
     instance.left = options.left
@@ -44,14 +43,9 @@ let Popover = (options = {}) => {
     document.body.appendChild(instance.$el);
     Vue.nextTick(function() {
         instance.visible = true;
-        instance.$el.removeEventListener('transitionend', removeDom);
         window.document.addEventListener('click', (e) => {
             instance.close()
         }, false)
-        // ~duration && (instance.timer = setTimeout(function() {
-        //   if (instance.closed) return;
-        //   instance.close();
-        // }, duration));
     });
     return instance;
 };

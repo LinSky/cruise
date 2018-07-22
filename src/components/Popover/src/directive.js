@@ -1,18 +1,19 @@
-import Vue from 'vue'
+import Popover from './popover.js'
+
 let directive = {
     name: 'pop',
     options: {
-        inserted: function(el) {
-            el.addEventListener('click', (e) => {
-                if (!Vue.prototype.$popInstance) {
-                    e.cancelBubble = true
-                    let x = el.offsetLeft
-                    let y = el.offsetTop
-                    let h = el.offsetHeight
-                    Vue.prototype.$popInstance = Vue.prototype.$popover({top: y+h, left: x, width: 500})
+        bind: function (el, binding, vnode) {
+            el._popHandler = function popHandler (e) {
+                e.cancelBubble = true
+                const options = {
+                    top: el.offsetTop + el.offsetHeight,
+                    left: el.offsetLeft,
+                    width: binding.value
                 }
-                Vue.prototype.$popInstance.close()
-            }, false)
+                this._tipInstance = Popover(options)
+            }
+            el.addEventListener('click', el._popHandler, false)
         }
     }
 }
