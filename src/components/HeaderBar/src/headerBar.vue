@@ -2,7 +2,7 @@
     <div class="tw_header_bar" >
         <div class="mid">
             <div class="logo">
-                <img src="1@/assets/svg/logo.svg" />
+                <img src="@/assets/svg/logo.svg" />
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 import HeaderBar from './HeaderBar/'
 import FooterBar from './FooterBar/'
+import MenuItem from './MenuItem/'
+import numberCard from './numberCard/'
 import {Popover, PopDirective} from './Popover/'
 
 const install = function (Vue, config = {}) {
@@ -7,6 +9,8 @@ const install = function (Vue, config = {}) {
 
     Vue.component(HeaderBar.name, HeaderBar)
     Vue.component(FooterBar.name, FooterBar)
+    Vue.component(MenuItem.name, MenuItem)
+    Vue.component(numberCard.name, numberCard)
 
     Vue.directive(PopDirective.name, PopDirective.options)
     Vue.$popover = Vue.prototype.$popover = Popover
