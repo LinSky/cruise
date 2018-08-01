@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 
 /*基础CSS文件 base.less*/
 import './assets/less/base.less'
@@ -17,6 +18,7 @@ import twui from './components'
 Vue.config.productionTip = false
 
 Vue.use(twui)
+Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({
