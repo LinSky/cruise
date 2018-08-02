@@ -14,8 +14,9 @@
                 <span>{{agent.location}} </span>
             </h5>
             <div class="ctrls">
-                <button type="button" v-pop="500"><i class="icon-plus"></i></button>
-                <em class="tag" v-for="(tag, index) in agent.resources">{{tag}} <i class="icon-trash"></i></em>
+                <button type="button" v-pop="agent"><i class="icon-plus"></i></button>
+                <em class="tag" v-for="(tag, index) in agent.resources" @click="deleteTagHandler(index)">{{tag}} <i class="icon-trash"></i></em>
+                <button type="button" class="deny"><i class="icon-deny"></i> Deny</button>
             </div>
         </div>
     </div>
@@ -33,19 +34,44 @@ export default {
         return {
         }
     },
+    watch: {
+        agent: {
+            handler: function () {
+                console.log(789);
+            },
+            deep: true
+        }
+    },
     computed: {
+        /**
+        *根据 os 获取本地资源图片
+        */
         logoUrl: function () {
-            console.log(this.agent.os);
             return require('@/assets/images/' + this.agent.os + '.png')
         }
     },
     created () {
-
+        this.$on('addResources', ()=>{
+            console.log('addResources');
+        })
     },
     methods:{
+        /**
+        *获取状态标签背景颜色
+        */
         getStatusBg () {
             return this.agent.status === 'idle' ? '#7FBC39' : '#FF9A2A'
+        },
+
+        /**
+        *删除resource
+        */
+        deleteTagHandler (index) {
+            let vm = this
+            vm.agent.resources.splice(index, 1)
         }
+
+
     }
 }
 </script>
@@ -75,9 +101,12 @@ export default {
         .ctrls{
             padding-top: 25px;
             button{
-                width: 28px; height: 25px; background: #00b4af; border: none; color: #FFF; font-size: 14px; line-height: 28px; float: left;
+                height: 25px; background: #00b4af; border: none; color: #FFF; font-size: 14px; line-height: 28px; float: left; padding: 0 8px;
                 &:hover{
                     background-color: #01869a;
+                }
+                &.deny{
+                    font-size: 14px; float: right;
                 }
             }
             em.tag{

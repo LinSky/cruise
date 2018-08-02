@@ -44,7 +44,8 @@ export default {
             ]
         }
     },
-
+    created () {
+    }
 }
 </script>
 

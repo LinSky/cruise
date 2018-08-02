@@ -9,8 +9,8 @@ let getAnInstance = () => {
         return instance;
     }
     return new PopoverConstructor({
-        el: document.createElement('div')
-    });
+        //el: document.createElement('div')
+    }).$mount();
 };
 
 let returnAnInstance = instance => {
@@ -39,6 +39,7 @@ let Popover = (options = {}) => {
     instance.width = options.width
     instance.top = options.top
     instance.left = options.left
+    instance.agent = options.agent
 
     document.body.appendChild(instance.$el);
     Vue.nextTick(function() {
@@ -46,6 +47,7 @@ let Popover = (options = {}) => {
         window.document.addEventListener('click', (e) => {
             instance.close()
         }, false)
+        console.log(instance);
     });
     return instance;
 };

@@ -17,14 +17,14 @@ let directive = {
     name: 'pop',
     options: {
         bind: function (el, binding, vnode) {
-
             el._popHandler = function popHandler (e) {
                 e.cancelBubble = true
-                console.log(el.offsetX);
+                console.log(vnode);
                 const options = {
-                    top: getTop(el) + el.offsetHeight,
-                    left: getLeft(el),
-                    width: binding.value
+                    top: getTop(el) + el.offsetHeight + 20,
+                    left: getLeft(el)-20,
+                    width: 500,
+                    agent: binding.value
                 }
                 this._tipInstance = Popover(options)
             }
