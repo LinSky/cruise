@@ -44,6 +44,14 @@ export default {
             agents: []
         }
     },
+    watch:{
+        agents: {
+            handler: function () {
+                console.log(12313133);
+            },
+            deep: true
+        }
+    },
     created () {
         this.getAgents()
     },

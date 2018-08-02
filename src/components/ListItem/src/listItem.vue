@@ -14,7 +14,7 @@
                 <span>{{agent.location}} </span>
             </h5>
             <div class="ctrls">
-                <button type="button" v-pop="agent"><i class="icon-plus"></i></button>
+                <button type="button" v-pop="addResources"><i class="icon-plus"></i></button>
                 <em class="tag" v-for="(tag, index) in agent.resources" @click="deleteTagHandler(index)">{{tag}} <i class="icon-trash"></i></em>
                 <button type="button" class="deny"><i class="icon-deny"></i> Deny</button>
             </div>
@@ -51,9 +51,6 @@ export default {
         }
     },
     created () {
-        this.$on('addResources', ()=>{
-            console.log('addResources');
-        })
     },
     methods:{
         /**
@@ -69,6 +66,10 @@ export default {
         deleteTagHandler (index) {
             let vm = this
             vm.agent.resources.splice(index, 1)
+        },
+
+        addResources (newResources) {
+            this.agent.resources = this.agent.resources.concat(newResources);
         }
 
 

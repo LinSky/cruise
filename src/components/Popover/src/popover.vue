@@ -5,7 +5,7 @@
             <input type="text" name="" value="" v-model="resourcesStr">
             <div class="btns">
                 <button type="button" class="add" name="button" @click="addResourcesHandler">Add Resources</button>
-                <button type="button" class="cancel" name="button">Cancel</button>
+                <button type="button" class="cancel" name="button" @click="cancelHandler">Cancel</button>
             </div>
         </div>
     </transition>
@@ -27,14 +27,19 @@ export default {
             type: Number,
             default: 0
         },
-        agent: {
-            type: Object
+        addHandler: {
+            type: Function
         }
     },
     data(){
         return {
             visible: false,
             resourcesStr: '',
+        }
+    },
+    computed: {
+        resources: function () {
+            return this.agent.resources
         }
     },
     methods:{
@@ -54,12 +59,13 @@ export default {
         },
         addResourcesHandler () {
             let vm = this
-
             if (vm.resourcesStr.length > 0) {
-                Array.prototype.push.apply(vm.agent.resources, vm.resourcesStr.split(','))
+                this.addHandler(vm.resourcesStr.split(','))
+                this.close()
             }
-            console.log(vm.agent.resources);
-            vm.$emit('addResources')
+        },
+        cancelHandler () {
+            this.close()
         }
     }
 }

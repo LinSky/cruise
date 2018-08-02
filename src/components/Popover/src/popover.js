@@ -9,8 +9,11 @@ let getAnInstance = () => {
         return instance;
     }
     return new PopoverConstructor({
-        //el: document.createElement('div')
-    }).$mount();
+        el: document.createElement('div'),
+        mounted: function () {
+            console.log(this.$refs.addBtn);
+        }
+    });
 };
 
 let returnAnInstance = instance => {
@@ -26,9 +29,10 @@ let removeDom = event => {
 };
 
 PopoverConstructor.prototype.close = function() {
-      this.visible = false;
-      this.$el.addEventListener('transitionend', removeDom);
-      this.closed = true;
+      this.visible = false
+      this.$el.addEventListener('transitionend', removeDom)
+      this.closed = true
+      this.resourcesStr = ''
       returnAnInstance(this);
 };
 
@@ -39,15 +43,14 @@ let Popover = (options = {}) => {
     instance.width = options.width
     instance.top = options.top
     instance.left = options.left
-    instance.agent = options.agent
+    instance.addHandler = options.addHandler
 
-    document.body.appendChild(instance.$el);
+    document.body.appendChild(instance.$el)
     Vue.nextTick(function() {
         instance.visible = true;
         window.document.addEventListener('click', (e) => {
             instance.close()
         }, false)
-        console.log(instance);
     });
     return instance;
 };

@@ -19,12 +19,11 @@ let directive = {
         bind: function (el, binding, vnode) {
             el._popHandler = function popHandler (e) {
                 e.cancelBubble = true
-                console.log(vnode);
                 const options = {
                     top: getTop(el) + el.offsetHeight + 20,
                     left: getLeft(el)-20,
                     width: 500,
-                    agent: binding.value
+                    addHandler: binding.value
                 }
                 this._tipInstance = Popover(options)
             }
