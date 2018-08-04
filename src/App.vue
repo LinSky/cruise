@@ -1,13 +1,14 @@
 <template>
     <div class="pager_box">
         <tw-header-bar></tw-header-bar>
-        <div class="content">
-            <div class="left">
+        <div class="left_bar">
+            <div class="menus">
                 <tw-menu-item v-for="(menu, index) in menus" :key="index" :iconName="menu.iconName" :text="menu.text" :path="menu.path" :active="index === activeIndex"></tw-menu-item>
             </div>
-            <div class="right">
+        </div>
+        <div class="content">
+
                 <router-view></router-view>
-            </div>
 
         </div>
         <tw-footer-bar></tw-footer-bar>
@@ -52,15 +53,11 @@ export default {
 <style lang="less" scoped>
 @import '~@/assets/less/lib.less';
 .pager_box{
-    height: 100%;
+}
+.left_bar{
+    position: fixed; top: 80px; bottom: 40px; left: calc((100% - 1200px)/2); width: 250px; background-color: @deepGray;
 }
 .content{
-    width: 1200px; height: 100%; padding: 80px 0 40px; margin: auto; display: flex; box-sizing: border-box;
-    .left{
-        width: 250px; background-color: @deepGray;  min-height: 100%;
-    }
-    .right{
-        flex: 1; padding: 20px;
-    }
+    width: 1200px; height: 100%; padding: 95px 0 40px 270px; margin: auto; box-sizing: border-box;
 }
 </style>

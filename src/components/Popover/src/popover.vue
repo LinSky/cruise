@@ -1,11 +1,15 @@
 <template>
     <transition name="fade">
         <div class="tw_popover" @click.stop="cancelBubbleHandler" :style="computeStyle()" v-if="visible">
-            <p>Separte multiple resource name with commas</p>
-            <input type="text" name="" value="" v-model="resourcesStr">
-            <div class="btns">
-                <button type="button" class="add" name="button" @click="addResourcesHandler">Add Resources</button>
-                <button type="button" class="cancel" name="button" @click="cancelHandler">Cancel</button>
+            <div class="popover_content">
+                <div class="triangle"></div>
+                <p>Separte multiple resource name with commas</p>
+                <input type="text" name="" value="" v-model="resourcesStr">
+                <div class="btns">
+                    <button type="button" class="add" name="button" @click="addResourcesHandler">Add Resources</button>
+                    <button type="button" class="cancel" name="button" @click="cancelHandler">Cancel</button>
+                </div>
+                <a href="javascript:;" class="close_btn icon-close" @click="cancelHandler"></a>
             </div>
         </div>
     </transition>
@@ -75,6 +79,39 @@ export default {
 @import '~@/assets/less/lib.less';
 .tw_popover{
     position: absolute; background-color: #FFF; border: @wathetBlue solid 1px; padding: 15px; box-sizing: border-box; box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
+    .popover_content{
+        position: relative;
+        .close_btn{
+            position: absolute; right: 0px; top: -5px; font-size: 20px; color: #00b4cf;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+        .triangle {
+         display:block;
+         width:0;
+         height:0;
+         border-width:10px 6px;
+         border-style:solid;
+         border-color:transparent transparent #00b4cf transparent;
+         position:absolute;
+         top:-36px;
+         left:10px;
+         &::after{
+             content: '';
+             display:block;
+             width:0;
+             height:0;
+             border-width: 10px 6px;
+             border-style:solid;
+             border-color: transparent transparent #fff transparent;
+             position:absolute;
+             top:-8px;
+             left:-6px;
+         }
+ }
+
+    }
     p{
         line-height: 32px; color: #666;
     }

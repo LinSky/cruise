@@ -15,6 +15,21 @@
                 </div>
             </div>
         </div>
+        <div class="fliter">
+            <div class="btns">
+                <button type="button" class="active">All</button>
+                <button type="button">Physical</button>
+                <button type="button">Virtual</button>
+            </div>
+            <div class="search">
+                <i class="icon-search"></i>
+                <input type="text" name="" value="">
+            </div>
+            <div class="list_types">
+                <i class="icon-th-card"></i>
+                <i class="icon-th-list active"></i>
+            </div>
+        </div>
         <div class="list">
             <template v-for="(agent, index) in agents">
                 <tw-list-item :agent="agent"></tw-list-item>
@@ -90,6 +105,36 @@ export default {
                 em{
                     font-size: 20px; line-height: 68px;
                 }
+            }
+        }
+    }
+}
+.fliter{
+    height: 53px; margin-top: 15px; background-color: #FFF;
+    .btns{
+        float: left;
+        button{
+            float: left; border: none; border-bottom: 3px solid #FFF; line-height: 50px; padding: 0 30px; border-right: #efefef solid 1px; font-size: 14px;
+            &.active{
+                border-bottom: 3px solid #00b4cf;
+            }
+        }
+    }
+    .search{
+        float: left; position: relative; width: 120px; height: 30px; background-color: #f3f3f3; border-top: #e1e4e6 solid 1px; border-left: #e1e4e6 solid 1px; margin: 10px 30px; padding: 0 10px 0 40px;
+        i{
+            position: absolute; top: 0; left: 0; line-height: 30px; width: 40px; text-align: center; font-size: 18px; color: #999;
+        }
+        input{
+            background: none; border: none; width: 100%; height: 30px;
+        }
+    }
+    .list_types{
+        float: right; padding-right: 30px;
+        i{
+            display: inline-block; padding-left: 20px; font-size: 20px; color: #999; line-height: 53px;
+            &.active{
+                color: #00b4cf;
             }
         }
     }
